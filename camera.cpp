@@ -35,6 +35,9 @@ struct v4l2_device_info {
     struct buf_info *buffers;
 } camera;
 
+/*
+ * V4L2 capture device initialization
+ */
 static int v4l2_init_device(struct v4l2_device_info *device)
 {
     int ret, i, j;
