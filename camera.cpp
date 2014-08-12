@@ -168,18 +168,18 @@ static int v4l2_stream_on(struct v4l2_device_info *device)
     int a, i, ret;
 
     for (i = 0; i < device->num_buffers; ++i) {
-            struct v4l2_buffer buf;
+		struct v4l2_buffer buf;
 
-            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-            buf.memory = V4L2_MEMORY_MMAP;
-            buf.index = i;
+		buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+		buf.memory = V4L2_MEMORY_MMAP;
+		buf.index = i;
 
-            ret = ioctl(device->fd, VIDIOC_QBUF, &buf);
-            if (ret < 0) {
-                perror("VIDIOC_QBUF");
-                device->num_buffers = i;
-                return -1;
-            }
+		ret = ioctl(device->fd, VIDIOC_QBUF, &buf);
+		if (ret < 0) {
+			perror("VIDIOC_QBUF");
+			device->num_buffers = i;
+			return -1;
+		}
     }
 
     device->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
