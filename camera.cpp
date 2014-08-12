@@ -54,7 +54,7 @@ static int v4l2_init_device(struct v4l2_device_info *device)
         return -1;
     }
 
-    printf("\n%s: Opened Channel\n", device->name);
+    printf("%s: Opened device\n", device->name);
 
     /* Check if the device is capable of streaming */
     if (ioctl(device->fd, VIDIOC_QUERYCAP, &capability) < 0) {
@@ -123,8 +123,6 @@ static int v4l2_init_device(struct v4l2_device_info *device)
             device->num_buffers = i;
             goto ERROR1;
         }
-        printf("temp_buffers[%d].start - %x\n", i,
-                (unsigned int)temp_buffers[i].start);
     }
 
     device->buffers = temp_buffers;
