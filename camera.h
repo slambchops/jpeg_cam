@@ -3,6 +3,6 @@
 
 int init_camera(void);
 void close_camera(void);
-int capture_frame(void);
+int capture_frame(char *jpegFileName);
 
 #endif // CAMERA_H

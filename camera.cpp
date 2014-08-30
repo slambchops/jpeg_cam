@@ -335,16 +335,17 @@ void close_camera(void)
 /*
  * Capture v4l2 frame and save to jpeg
  */
-int capture_frame(void)
+int capture_frame(char *jpegFileName)
 {
 	unsigned int index;
 
-	/* Request a capture buffer from the driver that can be copied to framebuffer */
+	/* Request a capture buffer from the driver that can be copied
+	 * to framebuffer */
 	v4l2_dequeue_buffer(&camera);
 
 	index = camera.buf.index;
 
-	jpegWrite((unsigned char *)camera.buffers[index].start,
+	jpeg_write(jpegFileName, (unsigned char *)camera.buffers[index].start,
 		camera.width, camera.height);
 
 	/* Give the buffer back to the driver so it can be filled again */

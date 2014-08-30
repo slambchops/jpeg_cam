@@ -2,16 +2,12 @@
 #include <sys/mman.h>
 #include <jpeglib.h>
 
-void jpegWrite(unsigned char* yuv, int width, int height)
+void jpeg_write(char *jpegFilename, unsigned char* yuv, int width, int height)
 {
     struct jpeg_compress_struct cinfo;
     struct jpeg_error_mgr jerr;
 
     unsigned char *img = (unsigned char *)malloc(width*height*3*sizeof(char));
-
-    char jpegFilename[256];
-
-    sprintf(jpegFilename, "image.jpg");
 
     JSAMPROW row_pointer[1];
     FILE *outfile = fopen( jpegFilename, "wb" );
